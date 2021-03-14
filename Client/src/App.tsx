@@ -25,8 +25,9 @@ export default class App extends React.Component {
   render() {
     return (
       <Fragment>
-      <a href='/'>Add</a>
-      <a href='/'>Remove</a>
+      <a href='/add'>Add</a>
+      &nbsp;&nbsp;
+      <a href='/remove'>Remove</a>
       <br />
       <table>
         <tr>
