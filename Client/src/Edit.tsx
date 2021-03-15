@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
+import Link from 'react-router-dom';
 
-export default class Add extends React.Component {
+export default class Edit extends React.Component {
     render() {
-        return(
+        return (
             <Fragment>
-                <h2>Add Employee</h2>
-
+                <h2>Edit Employee</h2>
                 <form>
                     <label>
                         First Name:
@@ -33,10 +33,10 @@ export default class Add extends React.Component {
                     <br />
                     <input type="submit" value="Submit" />
                     &nbsp;&nbsp;
-                    <a href='/'><input type="button" value="Cancel"/></a>
+                    <input type="button" value="Cancel"/>
+                    
                 </form>
             </Fragment>
         );
     }
-    
 }
