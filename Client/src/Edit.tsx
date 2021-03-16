@@ -36,18 +36,20 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
 
         if (this.state["first_name"] === "" || this.state["last_name"] === "" || this.state["email"] === "" || this.state["age"] === "") {
             alert("Please make sure ALL fields are filled out properly");
+            return;
         }
+
         axios.post(`http://localhost:3001/user/${id}/update`, {
             "first_name": this.state["first_name"],
             "last_name": this.state["last_name"],
             "email": this.state["email"],
             "age": this.state["age"]
             //"id": this.state["id"]
-        })
-          .then(res => {
-            alert("Employee added");
+        }).then((res) => {
+            alert("Saved Successfully");
             console.log("Employee added");
-        }).catch(e => alert(e));
+            window.location.href = "/";
+        }).catch(e => console.log(e));
             
       }
 

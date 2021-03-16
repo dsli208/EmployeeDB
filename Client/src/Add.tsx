@@ -1,6 +1,17 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-export default class Add extends React.Component {
+import { RouteProps } from 'react-router';
+
+interface MyProps {
+    //api: Api
+}
+
+interface MyState {
+    //someString: string,
+    //loading: boolean
+}
+
+export default class Add extends React.Component<MyProps & RouteProps, MyState> {
     static counter = 1;
 
     constructor(props) {
@@ -21,10 +32,10 @@ export default class Add extends React.Component {
     
     handleSubmit() {
         console.log("Axios Add");
-        
 
         if (this.state["first_name"] === "" || this.state["last_name"] === "" || this.state["email"] === "" || this.state["age"] === "") {
             alert("Please make sure ALL fields are filled out properly");
+            return;
         }
         axios.post('http://localhost:3001/add', {
             "first_name": this.state["first_name"],
@@ -32,14 +43,14 @@ export default class Add extends React.Component {
             "email": this.state["email"],
             "age": this.state["age"],
             "id": this.state["id"]
-        })
-          .then(res => {
+        }).then(res => {
             console.log(this.state['id']);
             Add.counter++;
             this.setState({id: Add.counter}, () => {
                 console.log(this.state['id']);
                 alert("Employee added");
                 console.log("Employee added");
+                window.location.href = "/";
             });
         }).catch(e => alert(e));
             
@@ -51,7 +62,6 @@ export default class Add extends React.Component {
 
 
     render() {
-        
         return(
             <Fragment>
                 <h2>Add Employee</h2>
@@ -81,7 +91,7 @@ export default class Add extends React.Component {
                         <input type="text" name="age" id="age" value={this.state['age']} onChange={this.handleChange} />
                     </label>
                     <br />
-                    <input type="submit" value="Submit" onClick={() => this.handleSubmit()} />
+                    <a href='/'><input type="submit" value="Submit" onClick={() => this.handleSubmit()} /></a>
                     &nbsp;&nbsp;
                     <a href='/'><input type="button" value="Cancel"/></a>
                 </form>
