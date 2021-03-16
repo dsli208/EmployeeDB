@@ -68,9 +68,9 @@ app.post('/add', (req, res) => {
             var last_name = req.body.last_name;
             var email = req.body.email;
             var age = req.body.age;
-            var id = req.body.id;
+            //var id = req.body.id;
 
-            var new_employee_obj = {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age, "ID": id};
+            var new_employee_obj = {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age};
             var emp_collection = empdb.collection("employees");
             emp_collection.insertOne(new_employee_obj);
 
@@ -110,10 +110,10 @@ app.get('/employees', (req, res) => {
 app.get('/user/:id', (req, res) => {
     const get_employee = async function(req, res) {
         try {
-            var id = parseInt(req.params.id); console.log(typeof(id));
-
+            var id = req.params.id;
+            console.log(id);
             var emp_collection = empdb.collection("employees");
-            var result = await emp_collection.findOne({"ID": id});
+            var result = await emp_collection.findOne({"_id": ObjectID(id)});
             if (result == null) {
                 console.log("Nothing found");
                 res.send(403, {"status": "error", "error": "No employee exists with this ID"});
@@ -134,12 +134,12 @@ app.get('/user/:id', (req, res) => {
 app.delete('/user/:id', (req, res) => {
     const delete_employee = async function(req, res) {
         try {
-            var id = parseInt(req.params.id);
+            var id = req.params.id;
             var emp_collection = empdb.collection("employees");
-            var result = emp_collection.findOne({"ID": id});
+            var result = emp_collection.findOne({"_id": id});
 
             if (result != null) {
-                var result2 = await emp_collection.deleteOne({"ID": id});
+                var result2 = await emp_collection.deleteOne({"_id": ObjectID(id)});
                 console.log(result);
                 res.send(200, {"employee": result});
             }
@@ -163,12 +163,12 @@ app.post('/user/:id/update', (req, res) => {
             var last_name = req.body.last_name;
             var email = req.body.email;
             var age = req.body.age;
-            var id = parseInt(req.params.id); console.log(typeof(id));
+            var id = req.params.id;
 
             var new_employee_dict = {$set: {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age}};
 
             var emp_collection = empdb.collection("employees");
-            var result = await emp_collection.updateOne({"ID": id}, new_employee_dict);
+            var result = await emp_collection.updateOne({"_id": ObjectID(id)}, new_employee_dict);
             if (result == null) {
                 console.log("Nothing found");
                 res.send(403, {"status": "error", "error": "No employee exists with this ID"});

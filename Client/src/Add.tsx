@@ -1,15 +1,17 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
-
 export default class Add extends React.Component {
+    static counter = 1;
+
     constructor(props) {
+        
         super(props);
         this.state = {
             first_name: "",
             last_name: "",
             email: "",
             age: "",
-            id: 4
+            id: Add.counter
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -32,8 +34,13 @@ export default class Add extends React.Component {
             "id": this.state["id"]
         })
           .then(res => {
-            alert("Employee added");
-            console.log("Employee added");
+            console.log(this.state['id']);
+            Add.counter++;
+            this.setState({id: Add.counter}, () => {
+                console.log(this.state['id']);
+                alert("Employee added");
+                console.log("Employee added");
+            });
         }).catch(e => alert(e));
             
       }
@@ -42,7 +49,9 @@ export default class Add extends React.Component {
         this.setState({[event.target.name]: event.target.value});
       }
 
+
     render() {
+        
         return(
             <Fragment>
                 <h2>Add Employee</h2>

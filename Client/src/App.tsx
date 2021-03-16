@@ -8,6 +8,7 @@ import Edit from './Edit';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 
 export default class App extends React.Component {
+  static counter = 1;
   state = {
     //data: [{"First Name": "David", "Last Name": "Li", "Email": "david.c.li@pwc.com", "Age": 18, "ID": 1}, {"First Name": "David", "Last Name": "Lee", "Email": "david.c.lee@pwc.com", "Age": 19, "ID": 2}]
     data: []
@@ -52,6 +53,7 @@ export default class App extends React.Component {
         const employees = res.data;
         this.setState({ data: employees });
         console.log(this.state.data);
+        App.counter = this.state.data.length;
     }).catch(e => console.log(e));
 
   }
@@ -61,11 +63,10 @@ export default class App extends React.Component {
       <Fragment>
         <Router>
           <Switch>
-          <Route path="/edit/:id">
-            <Edit />
+          <Route path="/edit/:id" component={(props) => <Edit {...props}/>}>
           </Route>
-          <Route path="/add">
-            <Add />
+          <Route path="/add" component={(props) => <Add {...props}/>}>
+            
           </Route>
           <Route path="/">
             <h2>Employees</h2>
@@ -92,8 +93,8 @@ export default class App extends React.Component {
                       <td>{row['Last Name']}</td>
                       <td>{row['Email']}</td>
                       <td>{row['Age']}</td>
-                      <td><a href={`/edit/` + row['ID']}>Edit</a></td>
-                      <td><Link to='/' onClick={() => this.confirmDelete(row['ID'])}>Remove</Link></td>
+                      <td><a href={`/edit/` + row['_id']}>Edit</a></td>
+                      <td><Link to='/' onClick={() => this.confirmDelete(row['_id'])}>Remove</Link></td>
                     </tr>
                   );
               })}

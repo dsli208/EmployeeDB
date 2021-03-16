@@ -1,10 +1,23 @@
 import React, { Fragment } from 'react';
 import Link from 'react-router-dom';
 import axios from 'axios';
+import { useParams, match } from 'react-router-dom';
+import { RouteProps } from 'react-router';
 
-export default class Edit extends React.Component {
+interface MyProps {
+    //api: Api
+}
+
+interface MyState {
+    //someString: string,
+    //loading: boolean
+}
+
+export default class Edit extends React.Component<MyProps & RouteProps, MyState> {
+    
     constructor(props) {
         super(props);
+        
         this.state = {
             first_name: "",
             last_name: "",
@@ -17,20 +30,19 @@ export default class Edit extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-    
     handleSubmit() {
-        console.log("Axios Add");
-        
+        console.log("Axios Edit");
+        var id = this.props.match.params.id;
 
         if (this.state["first_name"] === "" || this.state["last_name"] === "" || this.state["email"] === "" || this.state["age"] === "") {
             alert("Please make sure ALL fields are filled out properly");
         }
-        axios.post('http://localhost:3001/add', {
+        axios.post(`http://localhost:3001/user/${id}/update`, {
             "first_name": this.state["first_name"],
             "last_name": this.state["last_name"],
             "email": this.state["email"],
-            "age": this.state["age"],
-            "id": this.state["id"]
+            "age": this.state["age"]
+            //"id": this.state["id"]
         })
           .then(res => {
             alert("Employee added");
@@ -43,10 +55,26 @@ export default class Edit extends React.Component {
         this.setState({[event.target.name]: event.target.value});
       }
 
+      componentDidMount() {
+        console.log("Axios");
+        var props = this.props;
+        console.log(props);
+        var id = props.match.params.id;
+        console.log(id);
+        axios.get(`http://localhost:3001/user/${id}`)
+          .then(res => {
+            console.log(res.data.employee);
+            const employee = res.data.employee;
+            this.setState({first_name: employee['First Name'], last_name: employee['Last Name'], email: employee['Email'], age: employee['Age']});
+            console.log(this.state);
+        }).catch(e => console.log(e));
+    
+      }
+
     render() {
         return(
             <Fragment>
-                <h2>Edit Employee</h2>
+                <h2>Edit Employee: </h2>
 
                 <form>
                     <label>
