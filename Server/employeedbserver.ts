@@ -156,6 +156,36 @@ app.delete('/user/:id', (req, res) => {
     delete_employee(req, res);
 })
 
+app.post('/user/:id/update', (req, res) => {
+    const update_employee = async function(req, res) {
+        try {
+            var first_name = req.body.first_name; console.log(first_name);
+            var last_name = req.body.last_name;
+            var email = req.body.email;
+            var age = req.body.age;
+            var id = parseInt(req.params.id); console.log(typeof(id));
+
+            var new_employee_dict = {$set: {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age}};
+
+            var emp_collection = empdb.collection("employees");
+            var result = await emp_collection.updateOne({"ID": id}, new_employee_dict);
+            if (result == null) {
+                console.log("Nothing found");
+                res.send(403, {"status": "error", "error": "No employee exists with this ID"});
+            }
+            else {
+                console.log(result);
+                res.send(200, {"employee": result});
+            }
+        }
+        catch (e) {
+            console.log(e);
+            res.send(400, {"error": e});
+        }
+    }
+    update_employee(req, res);
+})
+
 //export{};
 
 /*https.createServer({

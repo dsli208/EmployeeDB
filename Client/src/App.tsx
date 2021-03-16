@@ -1,9 +1,10 @@
 import React, {Fragment} from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import Add from './Add';
+import Edit from './Edit';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 
 export default class App extends React.Component {
@@ -12,7 +13,8 @@ export default class App extends React.Component {
     data: []
   }
 
-  confirmDelete = () => {
+  /*confirmDelete = () => {
+    console.log("Confirm Delete");
     confirmAlert({
       title: 'Confirm Delete',
       message: 'Are you sure to delete this employee?',
@@ -27,7 +29,20 @@ export default class App extends React.Component {
         }
       ]
     });
-  };
+  };*/
+
+  confirmDelete(id) {
+    if (window.confirm('Are you sure you want to delete this employee?')) {
+      // Save it!
+      axios.delete(`http://localhost:3001/user/${id}`)
+      .then(res => {
+        console.log(res);
+        console.log("Deleted successfully");
+      })
+    } else {
+      // Do nothing!
+    }
+  }
 
   componentDidMount() {
     console.log("Axios");
@@ -46,6 +61,9 @@ export default class App extends React.Component {
       <Fragment>
         <Router>
           <Switch>
+          <Route path="/edit/:id">
+            <Edit />
+          </Route>
           <Route path="/add">
             <Add />
           </Route>
@@ -74,8 +92,8 @@ export default class App extends React.Component {
                       <td>{row['Last Name']}</td>
                       <td>{row['Email']}</td>
                       <td>{row['Age']}</td>
-                      <td><a href='/edit'>Edit</a></td>
-                      <td><a href='/remove'>Remove</a></td>
+                      <td><a href={`/edit/` + row['ID']}>Edit</a></td>
+                      <td><Link to='/' onClick={() => this.confirmDelete(row['ID'])}>Remove</Link></td>
                     </tr>
                   );
               })}
