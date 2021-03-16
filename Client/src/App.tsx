@@ -39,6 +39,7 @@ export default class App extends React.Component {
       .then(res => {
         console.log(res);
         console.log("Deleted successfully");
+        window.location.reload();
       })
     } else {
       // Do nothing!
@@ -73,7 +74,7 @@ export default class App extends React.Component {
             <a href='/add'>Add New Employee</a>
             <br />
             <br />
-            <table>
+            <table style={{alignItems: 'center'}}>
               <tr>
                 <th>First</th>
                 <th>Last</th>
