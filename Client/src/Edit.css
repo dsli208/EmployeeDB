@@ -39,16 +39,62 @@
   
   .body {
     font-family: 'Arial';
+    text-align: center;
   }
   
   h2 {
     text-align: center;
   }
   
-  table {
+  form {
     margin: 0 auto;
     text-align: center;
+    align-items: center;
+    width: 100%;  
+    background: #55acf3;
+    padding: 1.5em;
+    border-radius: 1em;
+  }
+
+/*.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+input[type=text], select {
     width: 100%;
-    
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=button], input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  div {
+    border-radius: 5px;
+    background: #55acf3;
+    padding: 20px;
+    text-align: center;
+  }
+
+  form {
+    display: inline-block;
   }
   

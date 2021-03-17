@@ -7,6 +7,9 @@ import Add from './Add';
 import Edit from './Edit';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 export default class App extends React.Component {
   static counter = 1;
   state = {
@@ -76,10 +79,11 @@ export default class App extends React.Component {
             <br />
             <table style={{alignItems: 'center'}}>
               <tr>
-                <th>First</th>
-                <th>Last</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>E-Mail</th>
                 <th>Age</th>
+                <th>Department</th>
               </tr>
               <tr>
                 <td>{this.state.data['First Name']}</td>
@@ -94,6 +98,7 @@ export default class App extends React.Component {
                       <td>{row['Last Name']}</td>
                       <td>{row['Email']}</td>
                       <td>{row['Age']}</td>
+                      <td>IFS</td>
                       <td><a href={`/edit/` + row['_id']}>Edit</a></td>
                       <td><Link to='/' onClick={() => this.confirmDelete(row['_id'])}>Remove</Link></td>
                     </tr>

@@ -77,8 +77,8 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
         return(
             <Fragment>
                 <h2>Edit Employee: </h2>
-
                 <form>
+                    <div>
                     <label>
                         First Name:
                         &nbsp;&nbsp;
@@ -106,7 +106,9 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
                     <input type="submit" value="Submit" onClick={() => this.handleSubmit()} />
                     &nbsp;&nbsp;
                     <a href='/'><input type="button" value="Cancel"/></a>
+                    </div>
                 </form>
+                
             </Fragment>
         );
     }

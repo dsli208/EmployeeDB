@@ -65,7 +65,7 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
         return(
             <Fragment>
                 <h2>Add Employee</h2>
-
+                <div>
                 <form>
                     <label>
                         First Name:
@@ -95,6 +95,7 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
                     &nbsp;&nbsp;
                     <a href='/'><input type="button" value="Cancel"/></a>
                 </form>
+                </div>
             </Fragment>
         );
     }
