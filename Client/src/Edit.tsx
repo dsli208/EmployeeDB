@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useParams, match } from 'react-router-dom';
 import { RouteProps } from 'react-router';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 interface MyProps {
     //api: Api
 }

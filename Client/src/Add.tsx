@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import axios from 'axios';
 import { RouteProps } from 'react-router';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 interface MyProps {
     //api: Api
 }
