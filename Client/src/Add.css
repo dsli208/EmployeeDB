@@ -44,10 +44,11 @@
   }*/
 
   label {
-    width: 30%;
+    /*width: 30%;
     position: absolute;
-    left: 10%;
-    text-align: right;
+    left: 10%;*/
+    text-align: left;
+    color: white;
     margin-right: 30px;
   }
 
@@ -59,10 +60,6 @@
 
   h2 {
     text-align: center;
-  }
-
-  label {
-    align-items: center;
   }
 
   input[type=text] {
@@ -89,10 +86,25 @@
   input[type=submit]:hover {
     background-color: #45a049;
   }
+
+  input[type=button] {
+    width: 50%;
+    background-color: #d3d3d3;
+    color: #000000;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=button]:hover {
+    background-color: #a9a9a9
+  }
   
   div {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #55acf3;
     padding: 20px;
     text-align: center;
   }

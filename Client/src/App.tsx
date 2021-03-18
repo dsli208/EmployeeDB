@@ -9,6 +9,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+//import './bootstrap.min.css';
 
 export default class App extends React.Component {
   static counter = 1;
@@ -73,8 +74,8 @@ export default class App extends React.Component {
             
           </Route>
           <Route path="/">
-            <h2>Employees</h2>
-            <a href='/add'>Add New Employee</a>
+            <h2>Employee DB</h2>
+            <a href='/add'><input type="button" value="Add New Employee"/></a>
             <br />
             <br />
             <table style={{alignItems: 'center'}}>
@@ -99,8 +100,8 @@ export default class App extends React.Component {
                       <td>{row['Email']}</td>
                       <td>{row['Age']}</td>
                       <td>IFS</td>
-                      <td><a href={`/edit/` + row['_id']}>Edit</a></td>
-                      <td><Link to='/' onClick={() => this.confirmDelete(row['_id'])}>Remove</Link></td>
+                      <td><a href={`/edit/` + row['_id']}><input type="button" value="Edit" id="edit"/></a></td>
+                      <td><Link to='/' onClick={() => this.confirmDelete(row['_id'])}><input type="button" value="Delete" id="delete"/></Link></td>
                     </tr>
                   );
               })}

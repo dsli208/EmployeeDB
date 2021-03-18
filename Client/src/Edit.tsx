@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useParams, match } from 'react-router-dom';
 import { RouteProps } from 'react-router';
-
+import './Edit.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
@@ -82,31 +82,19 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
                 <h2>Edit Employee: </h2>
                 <form>
                     <div>
-                    <label>
-                        First Name:
-                        &nbsp;&nbsp;
-                        <input type="text" name="first_name" id="firstname" value={this.state['first_name']} onChange={this.handleChange}/>
-                    </label>
+                    <label>First Name:</label><br />
+                    <input type="text" name="first_name" id="firstname" value={this.state['first_name']} onChange={this.handleChange}/>
                     <br />
-                    <label>
-                        Last Name:
-                        &nbsp;&nbsp;
-                        <input type="text" name="last_name" id="lastname" value={this.state['last_name']} onChange={this.handleChange}/>
-                    </label>
+                    <label>Last Name: </label><br />
+                    <input type="text" name="last_name" id="lastname" value={this.state['last_name']} onChange={this.handleChange}/>
                     <br />
-                    <label>
-                        E-Mail:
-                        &nbsp;&nbsp;
-                        <input type="text" name="email" id="email" value={this.state['email']} onChange={this.handleChange} />
-                    </label>
+                    <label>E-Mail: </label><br />
+                    <input type="text" name="email" id="email" value={this.state['email']} onChange={this.handleChange} />
                     <br />
-                    <label>
-                        Age:
-                        &nbsp;&nbsp;
-                        <input type="text" name="age" id="age" value={this.state['age']} onChange={this.handleChange} />
-                    </label>
+                    <label>Age: </label><br />
+                    <input type="text" name="age" id="age" value={this.state['age']} onChange={this.handleChange} />
                     <br />
-                    <input type="submit" value="Submit" onClick={() => this.handleSubmit()} />
+                    <Link to="/"><input type="submit" value="Submit" onClick={() => this.handleSubmit()} /></Link>
                     &nbsp;&nbsp;
                     <a href='/'><input type="button" value="Cancel"/></a>
                     </div>

@@ -44,26 +44,34 @@
   
   h2 {
     text-align: center;
+    color: white;
   }
   
   form {
     margin: 0 auto;
-    text-align: center;
+    display: inline-block;
     align-items: center;
     width: 100%;  
     background: #55acf3;
     padding: 1.5em;
     border-radius: 1em;
+    height: 600px;
   }
 
-/*.center {
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
-}*/
+}
+
+label {
+    align-items: left;
+}
 
 input[type=text], select {
-    width: 100%;
+    align-items: center;
+    width: 50%;
+    height: 50px;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -72,10 +80,21 @@ input[type=text], select {
     box-sizing: border-box;
   }
   
-  input[type=button], input[type=submit] {
-    width: 100%;
+  input[type=submit] {
+    width: 50%;
     background-color: #4CAF50;
     color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=button] {
+    width: 50%;
+    background-color: #d3d3d3;
+    color: #000000;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -86,6 +105,10 @@ input[type=text], select {
   input[type=submit]:hover {
     background-color: #45a049;
   }
+
+  input[type=button]:hover {
+    background-color: #a9a9a9
+  }
   
   div {
     border-radius: 5px;
@@ -94,7 +117,7 @@ input[type=text], select {
     text-align: center;
   }
 
-  form {
+  /*form {
     display: inline-block;
-  }
+  }*/
   
