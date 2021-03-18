@@ -68,9 +68,12 @@ app.post('/add', (req, res) => {
             var last_name = req.body.last_name;
             var email = req.body.email;
             var age = req.body.age;
-            //var id = req.body.id;
+            var dept = req.body.department;
+            var phone = req.body.phone;
+            var location = req.body.location;
+            console.log(dept);
 
-            var new_employee_obj = {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age};
+            var new_employee_obj = {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age, "Department": dept, "Phone Number": phone, "Location": location};
             var emp_collection = empdb.collection("employees");
             emp_collection.insertOne(new_employee_obj);
 
@@ -164,8 +167,12 @@ app.post('/user/:id/update', (req, res) => {
             var email = req.body.email;
             var age = req.body.age;
             var id = req.params.id;
+            var dept = req.body.department;
+            var phone = req.body.phone;
+            var location = req.body.location;
+            console.log(dept);
 
-            var new_employee_dict = {$set: {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age}};
+            var new_employee_dict = {$set: {"First Name": first_name, "Last Name": last_name, "Email": email, "Age": age, "Department": dept, "Phone Number": phone, "Location": location}};
 
             var emp_collection = empdb.collection("employees");
             var result = await emp_collection.updateOne({"_id": ObjectID(id)}, new_employee_dict);
@@ -174,12 +181,13 @@ app.post('/user/:id/update', (req, res) => {
                 res.send(403, {"status": "error", "error": "No employee exists with this ID"});
             }
             else {
+                console.log("Error");
                 console.log(result);
                 res.send(200, {"employee": result});
             }
         }
         catch (e) {
-            console.log(e);
+            //console.log(e);
             res.send(400, {"error": e});
         }
     }

@@ -5,6 +5,7 @@ import './App.css';
 import axios from 'axios';
 import Add from './Add';
 import Edit from './Edit';
+import Employee from './Employee';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -68,6 +69,8 @@ export default class App extends React.Component {
       <Fragment>
         <Router>
           <Switch>
+          <Route path="/user/:id" component={(props) => <Employee {...props}/>}>
+          </Route>
           <Route path="/edit/:id" component={(props) => <Edit {...props}/>}>
           </Route>
           <Route path="/add" component={(props) => <Add {...props}/>}>
@@ -85,6 +88,7 @@ export default class App extends React.Component {
                 <th>E-Mail</th>
                 <th>Age</th>
                 <th>Department</th>
+                <th>Location</th>
               </tr>
               <tr>
                 <td>{this.state.data['First Name']}</td>
@@ -99,7 +103,10 @@ export default class App extends React.Component {
                       <td>{row['Last Name']}</td>
                       <td>{row['Email']}</td>
                       <td>{row['Age']}</td>
-                      <td>IFS</td>
+                      <td>{row['Department']}</td>
+                      <td>{row['Location']}</td>
+                      <td></td>
+                      <td><a href={`/user/` + row['_id']}><input type="button" value="..." id="user"/></a></td>
                       <td><a href={`/edit/` + row['_id']}><input type="button" value="Edit" id="edit"/></a></td>
                       <td><Link to='/' onClick={() => this.confirmDelete(row['_id'])}><input type="button" value="Delete" id="delete"/></Link></td>
                     </tr>

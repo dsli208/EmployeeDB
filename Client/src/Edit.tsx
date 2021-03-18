@@ -26,7 +26,10 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
             last_name: "",
             email: "",
             age: "",
-            id: 4
+            id: 4, 
+            department: "",
+            location: "",
+            phone: ""
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -46,8 +49,10 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
             "first_name": this.state["first_name"],
             "last_name": this.state["last_name"],
             "email": this.state["email"],
-            "age": this.state["age"]
-            //"id": this.state["id"]
+            "age": this.state["age"],
+            "department": this.state['department'],
+            "phone": this.state['phone'],
+            "location": this.state['location']
         }).then((res) => {
             alert("Saved Successfully");
             console.log("Employee added");
@@ -70,7 +75,7 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
           .then(res => {
             console.log(res.data.employee);
             const employee = res.data.employee;
-            this.setState({first_name: employee['First Name'], last_name: employee['Last Name'], email: employee['Email'], age: employee['Age']});
+            this.setState({first_name: employee['First Name'], last_name: employee['Last Name'], email: employee['Email'], age: employee['Age'], location: employee['Location'], phone: employee['Phone Number'], department: employee['Department']});
             console.log(this.state);
         }).catch(e => console.log(e));
     
@@ -93,6 +98,18 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
                     <br />
                     <label>Age: </label><br />
                     <input type="text" name="age" id="age" value={this.state['age']} onChange={this.handleChange} />
+                    <br />
+                    <label>Phone Number:</label><br />
+                    <input type="text" name="phone" id="phone" value={this.state['phone']} onChange={this.handleChange}/>
+                    <br />
+                    <label>Location:</label><br />
+                    <input type="text" name="location" id="location" value={this.state['location']} onChange={this.handleChange}/>
+                    <br />
+                    <label>Department:</label><br />
+                    <select value={this.state['department']} name="department" id="department" onChange={this.handleChange}>
+                        <option value="IFS">IFS - Internal Firm Services</option>
+                        <option value="ASR">ASR - Assurance</option>
+                    </select>
                     <br />
                     <Link to="/"><input type="submit" value="Submit" onClick={() => this.handleSubmit()} /></Link>
                     &nbsp;&nbsp;

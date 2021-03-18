@@ -26,12 +26,15 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
             last_name: "",
             email: "",
             age: "",
-            id: Add.counter
+            id: 4,
+            department: "",
+            location: "",
+            phone: ""
         };
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-      }
+    }
 
     
     handleSubmit() {
@@ -46,7 +49,10 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
             "last_name": this.state["last_name"],
             "email": this.state["email"],
             "age": this.state["age"],
-            "id": this.state["id"]
+            "id": this.state["id"],
+            "department": this.state['department'],
+            "phone": this.state['phone'],
+            "location": this.state['location']
         }).then((res) => {
             console.log(this.state['id']);
             Add.counter++;
@@ -83,6 +89,18 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
                     <br />
                     <label>Age:</label><br />
                     <input type="text" name="age" id="age" value={this.state['age']} onChange={this.handleChange} />
+                    <br />
+                    <label>Phone Number:</label><br />
+                    <input type="text" name="phone" id="phone" value={this.state['phone']} onChange={this.handleChange}/>
+                    <br />
+                    <label>Location:</label><br />
+                    <input type="text" name="location" id="location" value={this.state['location']} onChange={this.handleChange}/>
+                    <br />
+                    <label>Department:</label><br />
+                    <select value={this.state['department']} name="department" id="department" onChange={this.handleChange}>
+                        <option value="IFS">IFS - Internal Firm Services</option>
+                        <option value="ASR">ASR - Assurance</option>
+                    </select>
                     <br />
                     <Link to='/'><input type="submit" value="Submit" onClick={() => this.handleSubmit()} /></Link>
                     &nbsp;&nbsp;
