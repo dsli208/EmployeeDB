@@ -87,16 +87,16 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
                 <h2>Edit Employee: </h2>
                 <form>
                     <div>
-                    <label>First Name:</label><br />
+                    <label>First Name:*</label><br />
                     <input type="text" name="first_name" id="firstname" value={this.state['first_name']} onChange={this.handleChange}/>
                     <br />
-                    <label>Last Name: </label><br />
+                    <label>Last Name:*</label><br />
                     <input type="text" name="last_name" id="lastname" value={this.state['last_name']} onChange={this.handleChange}/>
                     <br />
-                    <label>E-Mail: </label><br />
+                    <label>E-Mail:*</label><br />
                     <input type="text" name="email" id="email" value={this.state['email']} onChange={this.handleChange} />
                     <br />
-                    <label>Age: </label><br />
+                    <label>Age:*</label><br />
                     <input type="text" name="age" id="age" value={this.state['age']} onChange={this.handleChange} />
                     <br />
                     <label>Phone Number:</label><br />
@@ -111,6 +111,7 @@ export default class Edit extends React.Component<MyProps & RouteProps, MyState>
                         <option value="ASR">ASR - Assurance</option>
                     </select>
                     <br />
+                    <p>* denotes required field</p><br />
                     <Link to="/"><input type="submit" value="Submit" onClick={() => this.handleSubmit()} /></Link>
                     &nbsp;&nbsp;
                     <a href='/'><input type="button" value="Cancel"/></a>

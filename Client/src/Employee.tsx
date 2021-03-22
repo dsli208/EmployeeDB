@@ -47,8 +47,8 @@ export default class Employee extends React.Component<MyProps & RouteProps, MySt
         if (department === "ifs" || department === "IFS") {
             return "Internal Firm Services (IFS)";
         }
-        else if (department === "ars" || department === "ARS") {
-            return "Assurance (ARS)";
+        else if (department === "asr" || department === "ASR") {
+            return "Assurance (ASR)";
         }
         else {
             return "";

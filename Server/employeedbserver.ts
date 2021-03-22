@@ -194,6 +194,28 @@ app.post('/user/:id/update', (req, res) => {
     update_employee(req, res);
 })
 
+app.get('/dept/:name', (req, res) => {
+    const get_department_employees = async function(req, res) {
+        try {
+            var dept = req.params.name.toUpperCase();
+            var emp_collection = empdb.collection("employees");
+            var result = await emp_collection.find({"Department": dept}).toArray();
+
+            if (result == null) {
+                console.log("Nothing found");
+                res.send(403, {"status": "error", "error": "No employees are in this department"});
+            }
+            else {
+                res.send(200, result);
+            } 
+        }
+        catch (e) {
+            res.send(400, {"error": e});
+        }
+    }
+    get_department_employees(req, res);
+})
+
 //export{};
 
 /*https.createServer({

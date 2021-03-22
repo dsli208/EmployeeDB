@@ -6,6 +6,8 @@ import axios from 'axios';
 import Add from './Add';
 import Edit from './Edit';
 import Employee from './Employee';
+import Department from './Department';
+import Login from './Login';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -69,6 +71,9 @@ export default class App extends React.Component {
       <Fragment>
         <Router>
           <Switch>
+          <Route path="/login"><Login /></Route>
+          <Route path="/dept/:name" component={(props) => <Department {...props}/>}>
+          </Route>
           <Route path="/user/:id" component={(props) => <Employee {...props}/>}>
           </Route>
           <Route path="/edit/:id" component={(props) => <Edit {...props}/>}>
@@ -103,7 +108,7 @@ export default class App extends React.Component {
                       <td>{row['Last Name']}</td>
                       <td>{row['Email']}</td>
                       <td>{row['Age']}</td>
-                      <td>{row['Department']}</td>
+                      <td><a href={`/dept/` + row['Department']}>{row['Department']}</a></td>
                       <td>{row['Location']}</td>
                       <td></td>
                       <td><a href={`/user/` + row['_id']}><input type="button" value="..." id="user"/></a></td>

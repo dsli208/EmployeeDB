@@ -1,7 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 import { RouteProps } from 'react-router';
 import { Link } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import "react-datepicker/dist/react-datepicker.css";
 import './Add.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -29,7 +32,8 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
             id: 4,
             department: "",
             location: "",
-            phone: ""
+            phone: "",
+            startDate: ""
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -78,16 +82,16 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
                 <h2>Add Employee</h2>
                 <div>
                 <form>
-                    <label>First Name:</label><br />
+                    <label>First Name:*</label><br />
                     <input type="text" name="first_name" id="firstname" value={this.state['first_name']} onChange={this.handleChange}/>
                     <br />
-                    <label>Last Name:</label><br />
+                    <label>Last Name:*</label><br />
                     <input type="text" name="last_name" id="lastname" value={this.state['last_name']} onChange={this.handleChange}/>
                     <br />
-                    <label>E-Mail:</label><br />
+                    <label>E-Mail:*</label><br />
                     <input type="text" name="email" id="email" value={this.state['email']} onChange={this.handleChange} />
                     <br />
-                    <label>Age:</label><br />
+                    <label>Age:*</label><br />
                     <input type="text" name="age" id="age" value={this.state['age']} onChange={this.handleChange} />
                     <br />
                     <label>Phone Number:</label><br />
@@ -102,6 +106,10 @@ export default class Add extends React.Component<MyProps & RouteProps, MyState> 
                         <option value="ASR">ASR - Assurance</option>
                     </select>
                     <br />
+                    <label>Start Date:</label><br />
+                    <DatePicker value={this.state['startDate']} onChange={this.handleChange} />
+                    <br />
+                    <p>* denotes required field</p><br />
                     <Link to='/'><input type="submit" value="Submit" onClick={() => this.handleSubmit()} /></Link>
                     &nbsp;&nbsp;
                     <a href='/'><input type="button" value="Cancel"/></a>

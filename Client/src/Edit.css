@@ -117,7 +117,7 @@ input[type=text], select {
     text-align: center;
   }
 
-  /*form {
-    display: inline-block;
-  }*/
+  p {
+    color: white;
+  }
   
